@@ -1,4 +1,6 @@
-## Using stack
+# Binary Tree Inorder Traversal
+
+### Using stack
 ```
 Stack<TreeNode> stack = new Stack<>();
 while(root != null || !stack.isEmpty()) {
@@ -11,7 +13,7 @@ while(root != null || !stack.isEmpty()) {
     root = cur.right;
 }
 ```
-## Using recursion
+### Using recursion
 ```
 public void inorder(TreeNode node) {
     if(node == null) return;
@@ -34,7 +36,7 @@ public void inorder(TreeNode node) {
 }
 ```
 
-## Morris Traversal
+### Morris Traversal
 
 Morris (InOrder) traversal is a tree traversal algorithm that does not employ the use of recursion or a stack
 
