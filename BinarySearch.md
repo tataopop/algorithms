@@ -1,14 +1,14 @@
 # Binary Search
 ```
 class Solution {
-    public int searchInsert(int[] nums, int target) {
-        int low = 0, high = nums.length;
-        while(low < high) {
-            int mid = low + (high - low) / 2;
-            if(nums[mid] < target) low = mid + 1;
-            else high = mid;
+    public int search(int[] nums, int target) {
+        int l = 0, h = nums.length - 1;
+        while(l < h) {
+            int m = l + (h - l) / 2;
+            if(nums[m] < target) l = m + 1;
+            else h = m;
         }
-        return low;
+        return nums[l] == target ? l : -1;
     }
 }
 ```
