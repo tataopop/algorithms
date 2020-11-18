@@ -11,7 +11,7 @@ int findSubstring(string s){
 
     while(end < s.size()){
 
-        if(count[s.charAt(end++)]--){  /* modify counter here */ }
+        if(count[s.charAt(end++)]-- ? ){  /* modify counter here */ }
 
         while(/* counter condition */){ 
 
@@ -19,7 +19,7 @@ int findSubstring(string s){
 
             //increase begin to make it invalid/valid again
 
-            if(count[s.charAt(begin++)]++){ /*modify counter here*/ }
+            if(count[s.charAt(begin++)]++ ? ){ /*modify counter here*/ }
         }  
 
         /* update d here if finding maximum*/
