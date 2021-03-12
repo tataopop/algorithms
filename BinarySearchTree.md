@@ -1,50 +1,46 @@
 # Binary Search Tree 
 
 
-### Leetcode 315 : Count of Smaller Numbers After Self
-You are given an integer array nums and you have to return a new counts array. The counts array has the property where `counts[i]` is the number of smaller elements to the right of nums[i].
+### Leetcode 1373. Maximum Sum BST in Binary Tree
+
+Given a binary tree root, the task is to return the maximum sum of all keys of any sub-tree which is also a Binary Search Tree (BST).
+
+Assume a BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
 
 #### Example 1:
 ```
-Input: nums = [5,2,6,1]
-Output: [2,1,1,0]
+Input: root = [1,4,3,2,4,2,5,null,null,null,null,null,null,4,6]
+Output: 20
+Explanation: Maximum sum in a valid Binary search tree is obtained in root node with key equal to 3.
 ```
 
 #### Solution : 
 ```
 class Solution {
-    public List<Integer> countSmaller(int[] nums) {
-        Node root = null;
-        Integer[] res = new Integer[nums.length];
-        for(int i = nums.length - 1; i >= 0; i--) {
-            root = insert(nums[i], root, res, i, 0);
-        }
-        return Arrays.asList(res);
+    int max;
+    public int maxSumBST(TreeNode root) {
+        max = 0;
+        findMaxSum(root);
+        return max;
     }
     
-    private Node insert(int v, Node node, Integer[] res, int i, int preSum) {
-        if(node == null) {
-            node = new Node(v, 0);
-            res[i] = preSum;
-        } else if(v == node.val){
-            node.dup++;
-            res[i] = preSum + node.sum;
-        } else if(v > node.val) {
-            node.right = insert(v, node.right, res, i, preSum + node.sum + node.dup);
-        } else {
-            node.sum++;
-            node.left = insert(v, node.left, res, i, preSum);
+    //int[]{isBST(0/1), largest, smallest, sum}
+    public int[] findMaxSum(TreeNode node){
+        if(node==null){
+            return new int[]{1, Integer.MIN_VALUE, Integer.MAX_VALUE, 0};
         }
-        return node;
-    }
-    
-    class Node {
-        Node left, right;
-        int val, sum, dup = 1;
-        public Node(int v, int s) {
-            this.val = v;
-            this.sum = s;
+        int[] left = findMaxSum(node.left);
+        int[] right = findMaxSum(node.right);
+        boolean isBST = left[0]==1 && right[0]==1 && node.val>left[1] && node.val<right[2];
+        int sum = node.val + left[3] + right[3];
+        if(isBST){
+            max = Math.max(max, sum);
         }
+        return new int[]{isBST?1:0, Math.max(node.val,right[1]), Math.min(node.val,left[2]), sum};
     }
 }
 ```
