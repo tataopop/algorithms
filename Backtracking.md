@@ -41,3 +41,14 @@ class Solution {
     }
 }
 ```
+
+### complexity
+* n-queen problem:O(n!)
+
+* graph coloring problem:O(nm^n)//where n=no. of vertex,m=no. of color used
+
+* hamilton cycle:O(N!)
+
+* WordBreak and StringSegment:O(2^N)
+
+* subset sum problem:O(nW)
