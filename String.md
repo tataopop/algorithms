@@ -39,4 +39,8 @@ class Solution {
         return res;
     }
 }
+
+// \w \d \s	word, digit, whitespace
+// \W \D \S	not word, digit, whitespace
+
 ```
